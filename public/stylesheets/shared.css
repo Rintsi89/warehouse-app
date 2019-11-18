@@ -1,0 +1,123 @@
+body {
+	font-size: 0.9rem;
+	font-family: sans-serif;
+}
+
+main {
+    width: 95%;
+}
+
+nav {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#1e5799+58,1e5799+58,207cca+75 */
+background: #1e5799; /* Old browsers */
+background: -moz-linear-gradient(top, #1e5799 58%, #1e5799 58%, #207cca 75%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, #1e5799 58%,#1e5799 58%,#207cca 75%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #1e5799 58%,#1e5799 58%,#207cca 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#207cca',GradientType=0 ); /* IE6-9 */
+border-bottom: 1px solid black;
+}
+
+h1, h2, h3 {
+	text-shadow: -1px 0 #7eafe6, 0 1px #7eafe6, 1px 0 #7eafe6, 0 -1px #7eafe6;
+	color: black;	
+}
+
+section {
+	display: flex;
+    justify-content: center;
+}
+
+.nav__items {
+	display: flex;
+	flex-wrap: nowrap;
+	align-items: center;
+}
+
+.form-group {
+	width: 400px;
+}
+
+.main-header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 2;
+	box-sizing: border-box;
+}
+
+.w-100 {
+	width: unset !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+	color: white;
+	font-size: 1rem;
+}
+
+.justify-content-center {
+	display: inline-block;
+	
+}
+
+.btn-warning,
+.btn-danger,
+.btn-info,
+.btn-success {
+	color: white;
+	font-weight: bold;
+	border: 1px solid white;
+}
+
+.header-button {
+	margin: 8px;
+}
+
+.container-fluid {
+	margin-top: 5.8rem;
+	display: flex;
+	justify-content: center;
+}
+
+.page-indicator {
+	font-style: italic;
+}
+
+.form-container {
+	width: 32rem;
+	max-width: 512px;
+	margin: auto;
+	margin-bottom: 1rem;
+  	clear: both;
+}
+
+.form-group {
+	width: 100%;
+	clear: both;
+}
+
+.image-container {
+    text-align: center;
+}
+
+.edit-page-image {
+    clear: both;
+    max-width: 380px;
+    max-height: 340px;
+}
+
+#company {
+	font-weight: bold;
+	font-size: 1.6rem;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+#instock {
+	color: red;
+	margin-top: 0.3rem;
+	font-weight: bold;
+}
+
+#relatedLink {
+	float: right;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Your company stock</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1">
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+        <link rel="stylesheet" href="/stylesheets/shared.css">
+    </head>
+<body>
+
+    <% n =  new Date(); %>
+	<% y = n.getFullYear(); %>
+	<% m = n.getMonth() + 1; %>
+    <% d = n.getDate(); %>
+<header class="main-header">
+    <nav class="navbar navbar-dark navbar-expand-md bg-dark">
+                <ul class="navbar-nav w-100 justify-content-center">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar3">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <li class="nav-item active">
+                        <a class="nav-link main-logo" href="/products"><span id="company">Company stock</span> - <%= d %>/<%= m %>/<%=y%></a>
+                    </li>
+                </ul>
+        <div class="navbar-collapse collapse w-100" id="collapsingNavbar3">
+            <ul class="nav navbar-nav ml-auto w-100 justify-content-end nav__items">
+                <li class="nav-item">
+                    <a class="nav-link" href="/products/all">All products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products">Stock</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products/summary">Stock summary</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/products/returns">Returns</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/shipments">Shipments</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/user">Users</a>
+                </li>
+                <li class="nav-item">
+                    <% if (userStatus !== "admin") { %>
+                    <input type="button" class="btn btn-success btn-sm add-new header-button" onclick="location.href='/products/add';" value="Add new" disabled>
+                    <% } else { %>
+                    <input type="button" class="btn btn-success btn-sm add-new header-button" onclick="location.href='/products/add';" value="Add new">
+                    <% } %>
+                </li>
+                <li class="nav-item">
+                    <form class="delete-form" action="/user/logout?_method=DELETE" method="POST">
+                        <button class="btn btn-xs btn-danger btn-sm header-button">Log out</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+    <div class="container-fluid">
+        

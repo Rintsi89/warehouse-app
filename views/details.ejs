@@ -1,0 +1,94 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/details-page.css">
+<main>
+	<h3><%= products.code %> - <%= products.description %></h3>
+	<p class="page-indicator">On this page you can find details of <%= products.code %> - <%= products.description %>, activity log and related product stock levels and details.</p>
+	<section>
+			<div class="row main-product-row">
+				<div class="col-2 detail-table">
+					<div class="content-title">
+						<h6><%= products.code %></h6></div>
+						<img src="<%= products.image %>" class="productImage">
+					</div>
+				<div class="col-5 detail-table">
+					<div class="content-title">
+						<h6>Product Details</h6>
+					</div>
+					<div class="productInfo">
+						<p>Product code: <%= products.code %></p>
+						<p>Description: <%= products.description %></p>
+						<p>Class: <%= products.class %></p>
+						<p>Retail price: <%= products.price %>€ (24% VAT included)</p>
+						<p>Wholesale price: <%= products.netprice %>€ (0% VAT)</p>
+						<p>Quantity in stock: <span id="instock"><%= products.quantity %></span></p>
+						<p>Quantity coming: <%= products.quantitycoming %></p>
+						<p>Status: <%= products.status %></p>
+						<p>Notes: <%= products.comment %></p>
+						<a href="/products/<%= products._id %>/edit">Edit details</a>
+					</div>
+				</div>
+				<div class="col-5 detail-table">
+					<div class="content-title">
+						<h6>Recent activity</h6>
+					</div>
+					<div class="log">
+					<% products.log.reverse().forEach(function(log){ %>
+						<p><%= log.text %></p>
+					<% }) %>
+					</div>
+				</div>
+			</div>
+		
+	</section>
+	<br>
+	<h3 class="related-title">Related products for <%= products.code %></h3>
+	<section>
+				<div class="row related-products">
+					<% products.relatedproducts.forEach(function(product) { %>
+					<div class="related-product">
+						<div class="related-product__content">
+							<div class="content-title">
+								<h6><%= product.code %></h6>
+							</div>
+							<div class="productInfo">
+								<img src="<%= product.image %>" class="relatedImage">
+								<p>Product code: <a href="/products/<%= product._id %>"><%= product.code %></a></p>
+								<p>Description: <%= product.description %></p>
+								<p>Class: <%= product.class %></p>
+								<p>Retail price: <%= product.price %>€ (24% VAT included)</p>
+								<p>Quantity in stock: <span id="instock"><%= product.quantity %></span></p>
+								<p>Quantity coming: <%= product.quantitycoming %></p>
+								<p>Status: <%= product.status %></p>
+							</div>
+						</div>
+						<div class="delete">
+							<form action="/products/<%= products._id %>/removerelated?_method=PATCH" method="POST">
+								<input type="hidden" name="id" value="<%= product._id %>">
+								<% if (userStatus !== "admin") { %>
+								<button class="btn btn-danger btn-sm" disabled>Remove</button>
+								<% } else { %>
+								<button class="btn btn-danger btn-sm">Remove</button>
+								<% } %>
+							</form>
+						</div>
+					</div>
+					<% }) %>
+									<form action="/products/<%= products._id%>/addrelated?_method=PATCH" method="POST" class="related-form">
+										<div class="addrelated">
+											<input class="form-control" type="text" size="100" name="id" placeholder="Insert product code">
+										</div>
+										<div class="form-group">
+											<% if (userStatus !== "admin") { %>
+											<button class="btn btn-success" disabled>Add related product</button>
+											<% } else { %>
+											<button class="btn btn-success">Add related product</button>
+											<% } %>
+										</div>
+									</form>
+				</div>
+	</section>
+</main>
+<script src="/scripts/shared.js"></script>
+<% include ../partials/footer %>
+
+

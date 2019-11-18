@@ -1,0 +1,33 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/table-pages.css">
+<main>
+   <h3>Stock summary</h3>
+    <p class="page-indicator">On this page you can see estimated stock selling value. Total selling value of stock today is
+        <span class="total-value"><%= totalValue.toLocaleString() %>€</span> </p>
+        <table class="table table-hover summary-table">
+            
+            <thead>
+                <tr>
+                    <th scope="col">Class</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Quantity Coming</th>
+                    <th scope="col">*Total value </th>
+                    <th scope="col">% / total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% results.forEach(result => { %>
+                <tr>
+                    <td><%= result._id %></td>
+                    <td><span id="instock"><%= result.quantity %></span></td>
+                    <td><%= result.quantitycoming %></td>
+                    <td><%= result.value.toLocaleString() %>€</td>
+                    <td><%= (result.value / totalValue * 100).toFixed(2) %>%</td>
+                </tr>
+                <% }) %>
+            </tbody>
+            </table>
+            <p class="price-note">*Sum of net prices used for business clients (-30% discount included, VAT 0%)</p>
+</main>
+<script src="/scripts/shared.js"></script>
+<% include ../partials/footer %>

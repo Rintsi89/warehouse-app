@@ -1,0 +1,61 @@
+<% include ../partials/header %>
+<main>
+    <div class="row">
+        <div style="margin: auto;">
+        <h1 style="text-align: center;">Add New Product</h1>
+        <!-- Enctype multipart/form-data is needed so the file can be send -->
+            <form action="/products" method="POST" enctype="multipart/form-data" class="form-container"> 
+                <div class="form-group">
+                    <label for="code">Code:</label>
+                   <input class="form-control" type="text" id="code" name="code" placeholder="Product code">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input class="form-control" type="text" id="description" name="description" placeholder="Product description">
+                </div>
+                <div class="form-group">
+                    <label for="class">Class:</label>
+                    <select id="class" class="form-control" name="class">
+                        <option value=""></option>
+                        <option value="Product category 1">Product category 1</option>
+                        <option value="Product category 2">Product category 2</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="retail-price">Retail Price:</label>
+                    <input class="form-control" type="number" step="any" id="retail-price" name="price" placeholder="Retail price">
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input class="form-control" type="number" id="quantity" name="quantity" placeholder="Quantity">
+                </div>
+                <div class="form-group">
+                    <label for="on-the-way">On the way:</label>
+                    <input class="form-control" type="number" id="on-the-way" name="quantitycoming" placeholder="Quantity coming">
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <input class="form-control" type="text" id="status" name="status" placeholder="Status">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input class="form-control" type="file" id="image" name="image" placeholder="Image URL">
+                </div>
+                <div class="form-group">
+                    <label for="imageurl">Image URL:</label>
+                    <input class="form-control" type="text" id="imageurl" name="imageurl" placeholder="Image URL">
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <input class="form-control" type="text" id="comments"name="comment" placeholder="Comments">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+                <a href="/products">Go Back</a>
+            </form>
+        </div>
+    </div>
+</main>
+<script src="/scripts/shared.js"></script>
+<% include ../partials/footer %>

@@ -1,0 +1,37 @@
+{
+  "name": "tiedostot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "devserver": "nodemon app.js",
+    "lint": "eslint ."
+  },
+  "author": "Ville",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.573.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "ejs": "^2.7.2",
+    "excel4node": "^1.7.2",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.15",
+    "method-override": "^3.0.0",
+    "moment": "^2.24.0",
+    "mongo-round": "^1.0.0",
+    "mongodb": "^3.3.4",
+    "mongoose": "^5.7.11",
+    "mongoose-unique-validator": "^2.0.3",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "validator": "^12.0.0"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "nodemon": "^1.19.4"
+  }
+}

@@ -1,0 +1,88 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/table-pages.css">
+<main>
+        <h3>Latest shipments</h3>
+            <p class="page-indicator">On this page you can see by shipper which was the latest order deducted from stock. Hover over the <i class="fas fa-exclamation-triangle"></i> icon for more details about shipper.</p>
+        <table class="table table-hover summary-table">
+            <thead>
+                <tr>
+                    <th scope="col">Shipped by</th>
+                    <th scope="col">Client</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Update client</th>
+                    <th scope="col">Update / Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% shipments.forEach(shipment => { %>
+                <tr>
+                        <td>
+                            <% if (shipment.url) { %>
+                                    <a href="<%= shipment.url %>"><%= shipment.name %></a>
+                                <% } else { %>
+                                    <%= shipment.name %>
+                            <% } %>
+                            <% if (shipment.notes) { %>
+                                <i class="fas fa-exclamation-triangle message-triangle">
+                                <span class="status-message"><%= shipment.notes %></span>
+                            </i>
+                            <% } else { %>
+                            <i class="fas fa-exclamation-triangle message-triangle" style="visibility: hidden;"></i>
+                            <% } %>
+                        </td>
+                        <td><%= shipment.client %></td>
+                        <td><%= shipment.created_at %></td>
+                        <td>
+                            <form action="/shipments/<%= shipment._id %>?_method=PATCH" method="POST" class="client-form">
+                            <input type="text" name="client"></td>
+                        <td>
+                            <div class="btn-group">
+                                    <% if (userStatus !== "admin") { %>
+                                        <button class="btn btn-info btn-sm" disabled>Update</button>
+                                    <% } else { %>
+                                        <button class="btn btn-info btn-sm">Update</button>
+                                    <% } %>
+                            </form>
+                            </div>
+                            <div class="btn-group">
+                                <form class="delete-form" action="/shipments/<%= shipment._id %>?_method=DELETE" method="POST">
+                                    <% if (userStatus !== "admin") { %>
+                                        <button class="btn btn-xs btn-danger btn-sm" disabled>Delete</button>
+                                    <% } else { %>
+                                        <button class="btn btn-xs btn-danger btn-sm">Delete</button>
+                                    <% } %>
+                                </form>
+                            </div>
+                        </td>
+                    </form>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+        <form action="/shipments" method="POST" class="add-shipper-form">
+            <div class="add-shipper-form-fields">
+                <div>
+                    <label for="shipper-name">Shipper name:</label>
+                        <input class="form-control" type="text" size="100" id="shipper-name" name="name" placeholder="Insert shipper name">
+                </div>
+                <div>
+                    <label for="shipper-url">Shipper URL:</label>
+                        <input class="form-control" type="text" size="100" id="shipper-url" name="url" placeholder="Insert shipper URL">
+                </div>
+                <div>
+                    <label for="shipper-notes">Shipper notes:</label>
+                        <input class="form-control" type="text" size="100" id="shipper-notes" name="notes" placeholder="Insert shipper notes">
+                </div>
+            </div>
+                <% if (userStatus !== "admin") { %>
+                <button class="btn btn-success" disabled>Add new shipper</button>
+                <% } else { %>
+                <button class="btn btn-success">Add new shipper</button>
+                <% } %>
+                <span class="page-indicator">Add new shipper by filling the fields</span>
+        </form>
+</main>
+
+<script src="/scripts/shared.js"></script>
+
+<% include ../partials/footer %>

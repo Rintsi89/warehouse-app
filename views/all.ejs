@@ -1,0 +1,77 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/table-pages.css">
+<main>
+  <h3>All products</h3>
+  <p class="page-indicator">On this page you can find all the products in your company database including those with quantity of 0. Products with <i class="fas fa-exclamation-triangle"></i>-icon have reservations or notes which should be taken in
+  consideration before committing to clients. Hover over the icon to read and close the note.</p>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Product Code</th>
+        <th scope="col">Description</th>
+        <th scope="col">Class</th>
+        <th scope="col">In Stock</th>
+        <th scope="col">On the way</th>
+        <th scope="col">Status</th>
+        <th scope="col">Edit / Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% products.forEach(product => { %>
+      <tr>
+        <td><a href="/products/<%= product._id %>"><%= product.code %></a></td>
+        <td><div class="table-data"><%= product.description %></div></td>
+        <td><%= product.class %></td>
+        <td>
+          <div class="product-quantity">
+            <span id="instock"><%= product.quantity %></span>
+            <% if (product.comment) { %>
+            <i class="fas fa-exclamation-triangle message-triangle">
+              <span class="status-message"><%= product.comment %></span>
+            </i>
+            <% } else { %>
+            <i class="fas fa-exclamation-triangle message-triangle" style="visibility: hidden;"></i>
+            <% } %>
+          </div>
+          <div class="increments">
+            <form action="/products/<%= product._id %>/inc?_method=PATCH" method="POST">
+              <input type="number" name="number">
+              <% if (userStatus !== "admin") { %>
+              <button class="btn btn-default btn-sm" disabled><i class="fas fa-plus-square"></i></button>
+              <% } else { %>
+              <button class="btn btn-default btn-sm"><i class="fas fa-plus-square"></i></button>
+              <% } %>
+            </form>
+          </div>
+
+        </td>
+        <td><%= product.quantitycoming %></td>
+        <td><%= product.status %></td>
+        <td>
+          <div class="btn-group">
+            <% if (userStatus !== "admin") { %>
+            <input type="button" class="btn btn-warning btn-sm" onclick="location.href='/products/<%= product._id %>/edit';"
+              value="Edit" disabled>
+            <% } else { %>
+            <input type="button" class="btn btn-warning btn-sm" onclick="location.href='/products/<%= product._id %>/edit';"
+              value="Edit">
+            <% } %>
+          </div>
+          
+          <div class="btn-group">
+            <form class="delete-form" action="/products/<%= product._id %>?_method=DELETE" method="POST">
+              <% if (userStatus !== "admin") { %>
+              <button class="btn btn-xs btn-danger btn-sm" disabled>Delete</button>
+              <% } else { %>
+              <button class="btn btn-xs btn-danger btn-sm">Delete</button>
+              <% } %>
+            </form>
+          </div>
+        </td>
+      </tr>
+    <% }); %>
+    </tbody>
+  </table>
+</main>
+<script src="/scripts/shared.js"></script>
+<% include ../partials/footer %>

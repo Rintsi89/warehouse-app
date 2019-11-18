@@ -1,0 +1,47 @@
+html {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+body {
+    background: #1e5799; /* Old browsers */
+    background: -moz-linear-gradient(top, #1e5799 58%, #1e5799 58%, #207cca 75%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, #1e5799 58%,#1e5799 58%,#207cca 75%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, #1e5799 58%,#1e5799 58%,#207cca 85%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#207cca',GradientType=0 ); /* IE6-9 */
+    background-repeat: no-repeat;
+    background-color: #207cca !important; 
+    /* Adding !important forces the browser to overwrite the default style applied by Bootstrap * */
+}
+
+form {
+    width: 16rem;
+}
+
+.landing-form {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-control {
+    margin-bottom: 0.6rem;
+}
+
+.btn-success {
+    border: 1px solid black !important;
+}
+
+#company {
+    font-size: 3.1rem;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}

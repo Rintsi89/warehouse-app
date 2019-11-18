@@ -1,0 +1,89 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/table-pages.css">
+<main>
+    <h3>Users & authorization</h3>
+    <p class="page-indicator">On this page you can see website users and their status. Admin user can add users and manage their statuses</p>
+    <table class="table table-hover summary-table">
+      <thead>
+        <tr>
+          <th scope="col">User</th>
+          <th scope="col">Status</th>
+          <th scope="col">Email</th>
+          <th scope="col">Update status</th>
+          <th scope="col">Update email</th>
+          <th scope="col">Update / Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(user => { %>
+        <tr>
+          <td><%= user.name %></td>
+          <td><%= user.status %></td>
+          <td><%= user.email %></td>
+          <td>
+          <form action="/user/<%= user._id %>?_method=PATCH" class="client-form" id="<%= user.name %>" name="user-form" onsubmit="return validateForm(this.id)" method="POST">
+            <select name="status">
+                <option></option>
+                <option value="admin">admin</option>
+                <option value="employee">employee</option>
+            </select>
+          </td>
+          <td><input type="email" name="email"></td>
+          <td>
+            <div class="btn-group">
+                <% if (userStatus !== "admin") { %>
+                <button class="btn btn-info btn-sm" disabled>Update</button>
+                <% } else { %>
+                <button class="btn btn-info btn-sm">Update</button>
+                <% } %>
+          </form>
+            </div>
+            <div class="btn-group">
+              <form class="delete-form" action="/user/<%= user._id %>?_method=DELETE" method="POST">
+                <% if (userStatus !== "admin") { %>
+                <button class="btn btn-xs btn-danger btn-sm" disabled>Delete</button>
+                <% } else { %>
+                <button class="btn btn-xs btn-danger btn-sm">Delete</button>
+                <% } %>
+              </form>
+            </div>
+          </td>
+        </tr>
+        <% }); %>
+      </tbody>
+    </table>
+    <form action="/user" method="POST" class="add-shipper-form">
+      <div class="add-shipper-form-fields">
+      <div>
+        <label for="user-name">Name:</label>
+        <input class="form-control" type="text" size="100" id="user-name" name="name"
+          placeholder="Insert user's name">
+      </div>
+      <div>
+        <label for="user-email">Email:</label>
+        <input class="form-control" type="email" size="100" id="user-email" name="email" placeholder="Insert user's email">
+      </div>
+      <div>
+        <label for="user-status">Status:</label>
+        <select id="user-status" name="status" class="form-control">
+          <option value="admin">admin</option>
+          <option value="employee">employee</option>
+        </select>
+      </div>
+        <div>
+          <label for="user-password">Password:</label>
+          <input class="form-control" type="password" size="100" id="user-password" name="password" placeholder="Insert user's password">
+        </div>
+      </div>
+      <% if (userStatus !== "admin") { %>
+      <button class="btn btn-success" disabled>Create user</button>
+      <% } else { %>
+      <button class="btn btn-success">Create user</button>
+      <% } %>
+      <span class="page-indicator">Add new user by filling the fields</span>
+    </form>
+</main>
+
+<script src="/scripts/shared.js"></script>
+
+<% include ../partials/footer %>

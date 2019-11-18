@@ -1,0 +1,74 @@
+<% include ../partials/header %>
+<main>
+    <div class="row">
+        <div style="margin: auto;">
+        <h1 style="text-align: center;">Edit <%= product.code %></h1>
+            <form action="/products/<%= product._id %>?_method=PATCH" method="POST" enctype="multipart/form-data" class="form-container">
+                <div class="image-container">
+                    <img src="<%= product.image %>" class="edit-page-image">
+                </div>
+                <div class="form-group">   
+                    <label for="code">Code:</label>
+                    <input class="form-control" type="text" id="code" name="code" value="<%= product.code %>">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input class="form-control" type="text" id="description" name="description" value="<%= product.description %>">
+                </div>
+<div class="form-group">
+    <label for="class">Class:</label>
+    <select id="class" class="form-control" name="class">
+    
+    <% const options = ["", "Product category 1", "Product category 2"];%>
+
+    <% for ( let i = 0; i < options.length; i++ ) { %>
+
+        <% selected =  options[i] === product.class ? "selected" : ""; %>
+    
+    <option value="<%=options[i]%>" <%= selected %>> <%= options[i] %> </option>
+
+    <% }  %>
+    </select>
+</div>
+                <div class="form-group">
+                    <label for="retail-price">Retail Price:</label>
+                    <input class="form-control" type="number" step="0.01" id="retail-price" name="price" value="<%= product.price %>">
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input class="form-control" type="number" id="quantity" name="quantity" value="<%= product.quantity %>">
+                </div>
+                <div class="form-group">
+                    <label for="on-the-way">On the way:</label>
+                    <input class="form-control" type="number" id="on-the-way" name="quantitycoming" value="<%= product.quantitycoming %>">
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:</label>
+                    <input class="form-control" type="text" id="status" name="status" value="<%= product.status %>">
+                </div>
+                <div class="form-group">
+                    <label for="image">Image:</label>
+                    <input class="form-control" type="file" id="image" name="image">
+                    <p>Current image is: <%= product.image %></p>
+                </div>
+                <div class="form-group">
+                    <label for="imageurl">Image-URL:</label>
+                    <input class="form-control" type="text" id="imageurl" name="imageurl" value="<%= product.image %>">
+                </div>
+                <div class="form-group">
+                    <label for="comments">Comments:</label>
+                    <input class="form-control" type="text" id="comments" name="comment" value="<%= product.comment %>">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+                </div>
+                <div>
+                    <a href="/products" id="homeLink">Go Back</a>
+                    <a href="/products/<%= product._id %>" id="relatedLink">Edit related products</a></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<script src="/scripts/shared.js"></script>
+<% include ../partials/footer %>

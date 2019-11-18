@@ -1,0 +1,139 @@
+main {
+	max-width: 1250px;
+}
+
+.related-title {
+	text-align: center;
+}
+
+.main-product-row {
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .5);
+	width: 100%;
+    height: 300px;
+}
+
+.detail-table {
+	background-color: white;
+	padding: 0;
+	overflow: hidden;
+	height: 290px;
+}
+
+.detail-table:nth-of-type(n + 1) {
+	border-left: none;
+}
+
+.detail-table:nth-of-type(n + 1) {
+	border-right: none;
+}
+
+.content-title {
+	color: white;
+	text-align: center;
+	background: #7eafe6; /* Old browsers */
+	background: -moz-linear-gradient(top, #7eafe6 58%, #7eafe6 58%, #8fc1ed 75%); /* FF3.6-15 */
+	background: -webkit-linear-gradient(top, #7eafe6 58%,#7eafe6 58%,#8fc1ed 75%); /* Chrome10-25,Safari5.1-6 */
+	background: linear-gradient(to bottom, #7eafe6 58%,#7eafe6 58%,#8fc1ed 75%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7eafe6', endColorstr='#8fc1ed',GradientType=0 ); /* IE6-9 */
+	height: 50px;
+}
+
+.content-title:nth-of-type(n + 2) {
+	border-left: none;
+}
+
+.content-title h6 {
+	font-weight: bold;
+	font-size: 1rem;
+	font-family: Helvetica;
+	text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+	margin: 0px;
+	position: relative;
+	top: 30%;
+}
+
+.productInfo {
+	padding-top: 0.6rem;
+	position: relative;
+	top: 5%;
+	padding: 0.3rem;
+}
+
+.productInfo p {
+	margin: 0;
+	max-height: 21px;
+	overflow: hidden;
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+}
+
+.productImage {
+	display: block;
+	margin: auto;
+	margin-top: 0.3rem;
+	max-height: 209px;
+	height: 90%;
+	width: 90%;
+	object-fit: contain;
+}
+
+.log {
+	overflow: scroll;
+	overflow-x: hidden;
+	margin: 0.6rem;
+	height: 209px;
+	padding-top: 0.5rem;
+	padding-left: 0.3rem;
+	line-height: 4px;
+}
+
+.related-products {
+	width: 90%;
+	max-width: 1100px;
+}
+
+.related-product__content {
+	margin: 1rem 0.6rem;
+	box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, .5);	
+}
+
+.related-product {
+	width: 33%;
+	position: relative;
+}
+
+.related-product p {
+	margin: 0;
+	max-height: 21px;
+	overflow: hidden;
+	white-space: nowrap; 
+	text-overflow: ellipsis;
+}
+
+.related-product button {
+	position: absolute;
+	top: 86%;
+	right: 5%;
+}
+
+.relatedImage {
+	display: block;
+	margin: auto;
+	margin-top: 0.13rem;
+	margin-bottom: 0.3rem;
+	height: 159px;
+	max-width: 200px;
+	object-fit: contain;
+}
+
+.related-form {
+	width: 100%;
+	margin-left: .5rem;
+    margin-top: .5rem;
+}
+
+.addrelated {
+	width: 200px;
+	margin-bottom: 0.5rem;
+}
+

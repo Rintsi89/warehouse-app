@@ -1,0 +1,125 @@
+<% include ../partials/header %>
+<link rel="stylesheet" href="/stylesheets/table-pages.css">
+<main>
+        <h3>Waiting returns</h3>
+        <p class="page-indicator">On this page you can see expeced product returns and mark them returned. Once returned, the
+            products will be automatically added to the stock.</p>
+        <table class="table table-hover summary-table">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Notes</th>
+                    <th scope="col">Created at</th>
+                    <th scope="col">Created by</th>
+                    <th scope="col">Return / Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(function(product) { %>
+                    <% for (let i = 0; i < product.returns.length; i++) { %>
+                    
+                        <% if(product.returns[i].returned === "no") { %>
+                        <tr>
+                        <td><a href="/products/<%= product._id %>"><%= product.code %></a></td>
+                        <form action="/products/returns/<%= product._id %>?_method=PATCH" method="POST" class="client-form">
+                        <td><input type="number" name="quantity" value="<%= product.returns[i].quantity%>"></td>
+                        <td><input type="text" name="customer" value="<%= product.returns[i].customer%>"></td>
+                        <td><%= product.returns[i].notes%></td>
+                        <td><%= product.returns[i].created_at%></td>
+                        <td><%= product.returns[i].created_by%></td>
+                        <input type="text" name="returnID" value="<%= product.returns[i]._id%>" style="display: none;"></td>
+                        <td>
+                            <div class="btn-group">
+                                <% if (userStatus !== "admin") { %>
+                                <button class="btn btn-info btn-sm" disabled>Return</button>
+                                <% } else { %>
+                                <button class="btn btn-info btn-sm return-button">Return</button>
+                                <% } %>
+                                </form>
+                            </div>
+                            <div class="btn-group">
+                                <form class="delete-form" action="/products/returns/<%= product.returns[i]._id %>?_method=DELETE" method="POST">
+                                    <input type="text" name="productID" value="<%= product._id %>" style="display: none;">
+                                    <% if (userStatus !== "admin") { %>
+                                    <button class="btn btn-xs btn-danger btn-sm" disabled>Delete</button>
+                                    <% } else { %>
+                                    <button class="btn btn-xs btn-danger btn-sm">Delete</button>
+                                    <% } %>
+                                </form>
+                            </div>
+                        </td>
+                        </tr>
+                        <% } %>
+                    <% } %>
+                <% }); %>
+               
+            </tbody>
+        </table>
+        <form action="/products/returns/add?_method=PATCH" method="POST" class="add-shipper-form">
+            <div class="add-shipper-form-fields">
+                <div>
+                    <label for="product-code">Code:</label>
+                    <input class="form-control" type="text" size="100" id="product-code" name="code"
+                        placeholder="Insert product code">
+                </div>
+                <div>
+                    <label for="product-quantity">Quantity:</label>
+                    <input class="form-control" type="number" size="100" id="product-quantity" name="quantity"
+                        placeholder="Insert product quantity">
+                </div>
+                <div>
+                    <label for="customer-name">Customer:</label>
+                    <input class="form-control" type="text" size="100" id="customer-name" name="customer"
+                        placeholder="Insert customer name">
+                </div>
+                <div>
+                    <label for="product-notes">Notes:</label>
+                    <input class="form-control" type="text" size="100" id="product-notes" name="notes"
+                        placeholder="Insert notes">
+                </div>
+            </div>
+            <% if (userStatus !== "admin") { %>
+            <button class="btn btn-success" disabled>Add return</button>
+            <% } else { %>
+            <button class="btn btn-success">Add return</button>
+            <% } %>
+            <span class="page-indicator">Add pending return by filling the fields</span>
+        </form> 
+        <h3>Returned products</h3>
+        <p class="page-indicator">In the table below you can see which products where returned, who marked them as returned and when they were marked</p>
+        <table class="table table-hover summary-table">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Customer</th>
+                    <th scope="col">Returned at</th>
+                    <th scope="col">Marked by</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+                <% products.forEach(function(product) { %>
+                
+                    <% for (let i = 0; i < product.returns.length; i++) { %>
+                
+                        <% if(product.returns[i].returned === "yes") { %>
+                            <tr>
+                                <td><a href="/products/<%= product._id %>"><%= product.code %></a></td>
+                                <td><%= product.returns[i].quantity %></td>
+                                <td><%= product.returns[i].customer %></td>
+                                <td><%= product.returns[i].returned_at.substring(0, 10) %></td>
+                                <td><%= product.returns[i].returned_by %></td>
+                            </tr>
+                        <% } %>
+                    <% } %>
+                <% }); %>
+            </tbody>
+        </table>
+</main>
+
+<script src="/scripts/shared.js"></script>
+
+<% include ../partials/footer %>
